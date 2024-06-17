@@ -1626,7 +1626,7 @@ const displaycart = ()=>{
     document.getElementById("count").innerHTML=cart.length;
     if(cart.length==0){
         document.getElementById("cartItem").innerHTML = "Your cart is empty";
-        document.getElementById("total").innerHTML= "$ "+0+"";
+        document.getElementById("total").innerHTML= "$ "+total+"";
 
     }
     else{
@@ -1637,7 +1637,7 @@ const displaycart = ()=>{
             // console.log('kita:');
             console.log(Image+": " +title, price);
             total=total+price;
-            console.log("total: "+total)
+            // console.log("total: "+total)
         document.getElementById("total").innerHTML=" "+total+"";
         document.getElementById('cartItem').innerHTML +=   `<div class='cart-item'>
                 <div class='row-ing'>
