@@ -8,7 +8,7 @@ const product=[
     {
         id: 1,
         Image: 'Empty capscules.jpg',
-        title: 'Empty Capscules 300pcs',
+        title: 'Capscules',
         price: '100,000 Ushs'
     },
     {
@@ -1626,7 +1626,7 @@ const displaycart = ()=>{
     document.getElementById("count").innerHTML=cart.length;
     if(cart.length==0){
         document.getElementById("cartItem").innerHTML = "Your cart is empty";
-        document.getElementById("total").innerHTML= "$ "+total+"";
+        document.getElementById("total").innerHTML= " "+0+"";
 
     }
     else{
@@ -1637,14 +1637,14 @@ const displaycart = ()=>{
             // console.log('kita:');
             console.log(Image+": " +title, price);
             total=total+price;
-            // console.log("total: "+total)
-        document.getElementById("total").innerHTML=" "+total+"";
+            console.log("total: "+total)
+        document.getElementById("total").innerHTML +=" "+total+"";
         document.getElementById('cartItem').innerHTML +=   `<div class='cart-item'>
                 <div class='row-ing'>
                     <img class='rowing' src="${Image}" alt="this">
                 </div> 
                 <p style='font-size:10px;'>${title}</p>
-                <h2 style='font-size: 10px;'>${price}</h2>`+
+                <h2 style='font-size: 10px;'>${price}.00</h2>`+
                 "<i class='fa-solid fa-trash' onclick='delElement("+(j++)+")'></i></div>";
             
         });
