@@ -1626,7 +1626,7 @@ const displaycart = ()=>{
     document.getElementById("count").innerHTML=cart.length;
     if(cart.length==0){
         document.getElementById("cartItem").innerHTML = "Your cart is empty";
-        document.getElementById("total").innerHTML= "Ushs "+0+",";
+        document.getElementById("total").innerHTML= "Ushs "+total+",";
 
     }
     else{
