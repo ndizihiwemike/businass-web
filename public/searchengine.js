@@ -3,13 +3,13 @@ const product=[
         id: 0,
         Image:'Capsules filling plate.jpg',
         title: 'Capscule plate',
-        price: 520,
+        price: '550,000 Ushs',
     },
     {
         id: 1,
         Image: 'Empty capscules.jpg',
-        title: 'Capscules',
-        price: 620
+        title: 'Empty Capscules 300pcs',
+        price: '100,000 Ushs'
     },
     {
         id: 2,
