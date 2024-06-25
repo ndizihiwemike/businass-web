@@ -42,29 +42,55 @@
      <div class="sidebar">
         <div class="head"><p>my cart</p></div>
         <div>
-          <form action="/submit-form" method="post" id="userForm">
+
+            <form action="/submit-form" method="post" id="userForm">
+                <label for="Name">Your Name</label>
+                <input id="Name" type="text" placeholder="Name" name="Name" required>
+                
+                <label for="Email">Your E-mail</label>
+                <input id="Email" type="email" placeholder="E-mail" name="email" required>
+                
+                <label for="Phone">Your phone number</label>
+                <input id="Phone" type="tel" placeholder="Phone" name="Phone" required>
+                
+                <label for="Location">Your location</label>
+                <input id="Location" type="text" placeholder="Location" name="Location" required>
+                
+                <div id="cartItem">Your cart is empty</div>
+              
+                <div class="foot">
+                  <h3>Total</h3>
+                  <h2 id="total">$ 0</h2>
+                </div>
+                
+                <button type="submit">Submit</button>
+              </form>
+          <!-- <form action="/submit-form" method="post" id="userForm">
             <label  for="Name">Your Name</label>
-            <input id="Name" autocomplete="on" type="text" placeholder="Name" name="Name" required>
+            <input id="Name" type="text" placeholder="Name" name="Name" required>
             
             <label  for="Email">Your E-mail</label>
-            <input id="Email" autocomplete="on" type="email" placeholder="E-mail" name="email" required>
+            <input id="Email" type="email" placeholder="E-mail" name="email" required>
             
             <label  for="Phone">Your phone number</label>
-            <input id="Phone" autocomplete="off" type="number" placeholder="tel-no" name="tel-no" required>
+            <input id="Phone" type="tel" placeholder="Phone" name="Phone" required>
             
             <label for="Location">Your location</label>
-            <input id="Location" autocomplete="shipping street-address" type="text" placeholder="Location" name="Location" required>
+            <input id="Location" type="text" placeholder="Location" name="Location" required>
             
             <div id="cartItem">Your cart is empty</div>
+
+            <div class="foot">
+                <h3>Total</h3>
+                <h2 id="total">$ 0</h2>
+            </div>
+            
             <button type="submit">Submit</button>
             
-        </form>
+             
+            
+        </form> -->
         </div>
-        
-        <div class="foot">
-            <h3>Total</h3>
-            <h2 id="total">$ 0</h2>
-        </div> 
         
         
     </div>
@@ -73,45 +99,93 @@
    
 
    <script>
-    
-    
 
-    const userForm = document.getElementById("userForm");
+const userForm = document.getElementById("userForm");
 
 userForm.addEventListener("submit", async (e) => {
-    e.preventDefault(); // Prevent form submission
+  e.preventDefault(); // Prevent form submission
 
-    // Get form input values
-    const Name = document.getElementById("Name");
-    const email = document.getElementById("Email");
-    const phone = document.getElementById("Phone");
-    const Location = document.getElementById("Location");
-    const cartItem = document.getElementById("cartItem").textContent; // Extract cart item text
+  // Get form input values
+  const name = document.getElementById("Name").value;
+  const email = document.getElementById("Email").value;
+  const phone = document.getElementById("Phone").value;
+  const location = document.getElementById("Location").value;
+  const cartItems = []; // Initialize an empty array to store cart items
 
-   
-    try {
-        const response = await fetch("/submit-form", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ name, email, phone, location, cartItem })
-        });
-
-        if (response.ok) {
-            console.log("Form data submitted successfully!");
-            // You can display a success message to the user here
-        } else {
-            console.log("Error submitting form data:", response.status);
-            alert("Error submitting form data.");
-            // You can display an error message to the user here
-        }
-    } catch (error) {
-        console.log("An error occurred:", error);
-        alert("An error occurred:");
-        // You can display an error message to the user here
+  // Get cart items from the #cartItem div
+  const cartItemElements = document.getElementById("cartItem").children;
+  for (const element of cartItemElements) {
+    if (element.tagName === "DIV" && element.classList.contains("cart-item")) {
+      const cartItem = {
+        image: element.querySelector("img").src,
+        title: element.querySelector("p").textContent,
+        price: element.querySelector("h2").textContent
+      };
+      cartItems.push(cartItem);
     }
+  }
+
+  try {
+    const response = await fetch("/submit-form", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ name, email, phone, location, cartItems })
+    });
+
+    if (response.ok) {
+      console.log("Form data submitted successfully!");
+      // You can display a success message to the user here
+    } else {
+    //   console.log("Error submitting form data:", response.status);
+      alert("Error submitting form data.");
+      // You can display an error message to the user here
+    }
+  } catch (error) {
+    console.log("An error occurred:", error);
+    alert("An error occurred:");
+    // You can display an error message to the user here
+  }
 });
+
+//     const userForm = document.getElementById("userForm").e;
+
+// userForm.addEventListener("submit", async (input, textarea, select) => {
+//     e.preventDefault(); // Prevent form submission
+
+//     // Get form input values
+//     const Name = document.getElementById("Name").Value;
+//     const email = document.getElementById("Email").Value;
+//     const phone = document.getElementById("Phone").Value;
+//     const Location = document.getElementById("Location").Value;
+//     const cartItem = document.getElementById("cartItem").textContent; // Extract cart item text
+//     const title = document.getElementById("title").Value;
+    
+   
+//     try {
+//         const response = await fetch("/submit-form", {
+//             method: "POST",
+//             headers: {
+//                 "Content-Type": "application/json"
+//             },
+//             body: JSON.stringify({ name, email, phone, location, cartItem, title })
+//         });
+
+//         if (response.ok) {
+//             console.log("Form data submitted successfully!");
+//             // You can display a success message to the user here
+//         } else {
+//             console.log("Error submitting form data:", response.status);
+//             alert("Error submitting form data.");
+//             // You can display an error message to the user here
+//         }
+//     } catch (error) {
+//         console.log("An error occurred:", error);
+//         alert("An error occurred:");
+//         // You can display an error message to the user here
+//     }
+// });
 
 </script>
 </body>
