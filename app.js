@@ -14,7 +14,6 @@ app.post("/submit-form", async (req, res) => {
   try {
     const { Name, email, tel_no, Location, cartItem, title } = req.body;
     console.log(req.body);
-  res.send('Form data submitted successfully!');
 
     // Create a Nodemailer transporter (configure with your email provider)
     const transporter = nodemailer.createTransport({
@@ -23,7 +22,6 @@ app.post("/submit-form", async (req, res) => {
         user: "mndizihiwe@yandex.com",
         pass: "votxcetqzdxeudvp",
       },
-      
     });
 
     // Compose email
@@ -40,7 +38,7 @@ app.post("/submit-form", async (req, res) => {
     res.send("Form data submitted successfully!");
   } catch (error) {
     console.error("Error submitting form data:", error);
-    res.send("An error occurred while processing the form.");
+    res.status(500).send("An error occurred while processing the form.");
   }
 });
 
