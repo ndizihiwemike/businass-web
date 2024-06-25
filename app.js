@@ -37,10 +37,10 @@ app.post("/submit-form", async (req, res) => {
     // Send email
     await transporter.sendMail(mailOptions);
 
-    res.status(200).send("Form data submitted successfully!");
+    res.send("Form data submitted successfully!");
   } catch (error) {
     console.error("Error submitting form data:", error);
-    res.status(500).send("An error occurred while processing the form.");
+    res.send("An error occurred while processing the form.");
   }
 });
 
