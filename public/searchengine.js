@@ -1630,7 +1630,7 @@ const displaycart = ()=>{
 
     }
     else{
-        document.getElementById('cartItem').innerHTML ='';
+        document.getElementById('cartItem').innerHTML ='cart.html';
      cart.forEach((item)=> 
         {
             var {Image, title, price} = item;
