@@ -28,7 +28,7 @@ app.post("/submit-form", async (req, res) => {
     const mailOptions = {
       from: "mndizihiwe@yandex.com",
       to: "mikendizihiwe@gmail.com",
-      subject: "Inquiry from " + Name,
+      subject: "Order from " + Name,
       text: `Name: ${Name}\nEmail: ${email}\nPhone: ${tel_no}\nLocation: ${Location}\n\nCart Item:\n${cartItem}\ntotal: ${total}`,
     };
 
