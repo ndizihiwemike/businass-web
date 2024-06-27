@@ -100,8 +100,8 @@ userForm.addEventListener("submit", async (e) => {
       cartItems.push(cartItem);
     }
   }
-  // const total = document.getElementById("total").value;
-  const total = calculateTotal();
+  const total = document.getElementById("total").value;
+  // const total = calculateTotal();
 
   const messageBox = document.getElementById('message-box');
 messageBox.innerHTML = `
