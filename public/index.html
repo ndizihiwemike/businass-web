@@ -65,6 +65,7 @@
                 
                 <button type="submit">Submit</button>
               </form>
+              <div id="message-box"></div>
         </div>
         
         
@@ -99,7 +100,18 @@ userForm.addEventListener("submit", async (e) => {
       cartItems.push(cartItem);
     }
   }
-  const total = document.getElementById("total").value;
+  // const total = document.getElementById("total").value;
+  const total = calculateTotal();
+
+  const messageBox = document.getElementById('message-box');
+messageBox.innerHTML = `
+  Name: ${name}
+  Email: ${email}
+  Phone: ${phone}
+  Location: ${location}
+
+  Cart Item: ${cartItem}
+  Total: ${total}`;
   
   try {
     const response = await fetch("/submit-form", {

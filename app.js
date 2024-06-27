@@ -12,7 +12,7 @@ app.use(express.static(path.join(__dirname,"public")));
 // Handle form submission
 app.post("/submit-form", async (req, res) => {
   try {
-    const { Name, email, tel_no, Location, cartItem, total } = req.body;
+    const { Name, email, Phone, Location, cartItem, total } = req.body;
     console.log(req.body);
 
     // Create a Nodemailer transporter (configure with your email provider)
