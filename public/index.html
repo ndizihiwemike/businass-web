@@ -65,7 +65,7 @@
                 
                 <button type="submit">Submit</button>
               </form>
-              <div id="message-box"></div>
+              <!-- <div id="message-box"></div> -->
         </div>
         
         
@@ -101,41 +101,40 @@ userForm.addEventListener("submit", async (e) => {
     }
   }
   const total = document.getElementById("total").value;
-  // const total = calculateTotal();
 
-  const messageBox = document.getElementById('message-box');
-messageBox.innerHTML = `
-  Name: ${name}
-  Email: ${email}
-  Phone: ${phone}
-  Location: ${location}
-
-  Cart Item: ${cartItem}
-  Total: ${total}`;
-  
   try {
-    const response = await fetch("/submit-form", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ name, email, phone, location, cartItems })
-    });
+  const response = await fetch("/submit-form", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      name: name,
+      email: email,
+      phone: phone,
+      location: location,
+      cartItems: cartItems,
+      total: total
+    })
+  });
 
-    if (response.ok) {
-      console.log("Form data submitted successfully!");
-      // You can display a success message to the user here
-    } else {
-    //   console.log("Error submitting form data:", response.status);
-      alert("Error submitting form data.");
-      // You can display an error message to the user here
-    }
-  } catch (error) {
-    console.log("An error occurred:", error);
-    alert("An error occurred:");
+  if (response.ok) {
+    console.log("Form data submitted successfully!");
+    // You can display a success message to the user here
+  } else {
+    console.log("Error submitting form data:", response.status);
+    alert("Error submitting form data.");
     // You can display an error message to the user here
   }
+} catch (error) {
+  console.log("An error occurred:", error);
+  alert("An error occurred:");
+  // You can display an error message to the user here
+}
+
 });
+
+
 </script>
 </body>
 </html>

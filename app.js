@@ -6,14 +6,15 @@ const nodemailer = require("nodemailer");
 const path = require('path');
 
 const app = express();
+app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname,"public")));
 
 // Handle form submission
 app.post("/submit-form", async (req, res) => {
   try {
-    const { Name, email, tel_no, Location, cartItem, total } = req.body;
-    console.log(req.body);
+    const { name, email, phone, location, cartItems, total } = req.body;
+    console.log(name, email, phone, location, cartItems, total);
 
     // Create a Nodemailer transporter (configure with your email provider)
     const transporter = nodemailer.createTransport({
@@ -28,14 +29,8 @@ app.post("/submit-form", async (req, res) => {
     const mailOptions = {
       from: "mndizihiwe@yandex.com",
       to: "mikendizihiwe@gmail.com",
-      subject: "Order from " + Name,
-      text: `Name: ${name}\n
-  Email: ${email}\n
-  Phone: ${phone}\n
-  Location: ${location}\n
-
-  Cart Item: ${cartItem}\n
-  Total: ${total}`,
+      subject: "Order from " + name,
+      text: `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nLocation: ${location}\nCart Items: ${cartItems}\nTotal: ${total}`,
     };
 
     // Send email
@@ -44,12 +39,12 @@ app.post("/submit-form", async (req, res) => {
     res.send("Form data submitted successfully!");
   } catch (error) {
     console.error("Error submitting form data:", error);
-    res.status(500).send("An error occurred while processing the form.");
+    res.status(600).send("An error occurred while processing the form.");
   }
 });
 
 // Start the server
-const PORT = process.env.PORT || 10000;
+const PORT = process.env.PORT || 6000;
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
 });
