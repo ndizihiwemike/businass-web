@@ -12,7 +12,7 @@ app.use(express.static(path.join(__dirname,"public")));
 // Handle form submission
 app.post("/submit-form", async (req, res) => {
   try {
-    const { Name, email, Phone, Location, cartItem, total } = req.body;
+    const { Name, email, tel_no, Location, cartItem, total } = req.body;
     console.log(req.body);
 
     // Create a Nodemailer transporter (configure with your email provider)
@@ -29,7 +29,13 @@ app.post("/submit-form", async (req, res) => {
       from: "mndizihiwe@yandex.com",
       to: "mikendizihiwe@gmail.com",
       subject: "Order from " + Name,
-      text: `Name: ${Name}\nEmail: ${email}\nPhone: ${tel_no}\nLocation: ${Location}\n\nCart Item:\n${cartItem}\ntotal: ${total}`,
+      text: `Name: ${name}\n
+  Email: ${email}\n
+  Phone: ${phone}\n
+  Location: ${location}\n
+
+  Cart Item: ${cartItem}\n
+  Total: ${total}`,
     };
 
     // Send email
