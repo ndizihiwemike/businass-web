@@ -15,6 +15,7 @@ app.post("/submit-form", async (req, res) => {
   try {
     const { name, email, phone, location, cartItems, total } = req.body;
     console.log(name, email, phone, location, cartItems, total);
+    res.status(201).send("Form data submitted successfully!");
 
     // Create a Nodemailer transporter (configure with your email provider)
     const transporter = nodemailer.createTransport({
@@ -39,12 +40,12 @@ app.post("/submit-form", async (req, res) => {
     res.send("Form data submitted successfully!");
   } catch (error) {
     console.error("Error submitting form data:", error);
-    res.status(600).send("An error occurred while processing the form.");
+    res.status(500).send("An error occurred while processing the form.");
   }
 });
 
 // Start the server
-const PORT = process.env.PORT || 6000;
+const PORT = process.env.PORT || 5502;
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
 });

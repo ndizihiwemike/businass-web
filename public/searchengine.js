@@ -1598,7 +1598,7 @@ const displayitem = (items)=> {
         return(
             `<div class='box'>
                 <div class="img-box">
-                   <img class="images" src="${Image}" alt="this">
+                   <a href="./cart.html"><img class="images" src="${Image}" alt="this"></a>
                 </div>
                 <div class="bottom">
                    <p>${title}</p>
