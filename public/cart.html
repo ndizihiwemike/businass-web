@@ -38,6 +38,81 @@
    <script src="searchengine.js"></script>
    <script>
 
+const userForm = document.getElementById("userForm");
+
+userForm.addEventListener("submit", async (e) => {
+  e.preventDefault(); // Prevent form submission
+
+  // Get form input values
+  const name = document.getElementById("Name").value;
+  const email = document.getElementById("Email").value;
+  const phone = document.getElementById("Phone").value;
+  const location = document.getElementById("Location").value;
+  const cartItems = []; // Initialize an empty array to store cart items
+
+  // Get cart items from the #cartItem div
+  const cartItemElements = document.getElementById("cartItem").children;
+  for (const element of cartItemElements) {
+    if (element.tagName === "DIV" && element.classList.contains("cart-item")) {
+      const cartItem = {
+        image: element.querySelector("img").src,
+        title: element.querySelector("p").textContent,
+        price: element.querySelector("h2").textContent
+      };
+      cartItems.push(cartItem);
+    }
+  }
+  console.log(cartItems)
+  // const total = document.getElementById("total").value;
+  // Calculate the total price
+const totalPriceString = cartItems.reduce((acc, item) => {
+  // totalPrice.toFixed(2);
+  return acc + parseFloat(item.price);
+}, 0);
+
+// Create a string to display the cart items in the email
+// const cartItemsString = JSON.stringify(cartItems, null, 2);
+
+// Format totalPrice as a string with 2 decimal places
+// const totalPriceString = totalPrice.toFixed(2);
+
+const cartItemsString = cartItems.map((item, index) => {
+  JSON.stringify(cartItems, null, 2);
+  return `${index + 1}. ${item.title} - ${item.price}`;
+}).join("\n");
+
+  try {
+  const response = await fetch("/submit-form", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      name: name,
+      email: email,
+      phone: phone,
+      location: location,
+      cartItems: cartItems,
+      total: total
+    })
+  });
+
+  if (response.ok) {
+    console.log("Form data submitted successfully!");
+    // You can display a success message to the user here
+  } else {
+    console.log("Error submitting form data:", response);
+    alert("Error submitting form data.");
+    // You can display an error message to the user here
+  }
+} catch (error) {
+  console.log("An error occurred:", error);
+  alert("An error occurred:");
+  // You can display an error message to the user here
+}
+
+});
+
     
    </script>
         
