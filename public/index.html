@@ -25,10 +25,10 @@
    <!-- <h1 class="p"><strong>PATRICA ELECTRONIC CENTRE</strong></h1>  -->
 
 <div class="data">
-<div class="top">
+<!-- <div class="top">
     <p>+256772270414</p>
     <p>mikendizihiwe@gmail.com</p>
-</div>
+</div> -->
 <div class="header">
     <p>BUY EVERY THING ONLINE</p>
     <div class="cart"><a href="./cart.html"><i class="fa-solid fa-cart-shopping"></i><p id="count">0</p></a></div>
@@ -96,6 +96,9 @@ userForm.addEventListener("submit", async (e) => {
         title: element.querySelector("p").textContent,
         price: element.querySelector("h2").textContent
       };
+    console.log("Title:", cartItem.title);
+    console.log("Price:", cartItem.price);
+    console.log("Image URL:", cartItem.image);
       cartItems.push(cartItem);
     }
   }
