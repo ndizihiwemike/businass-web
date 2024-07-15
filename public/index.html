@@ -85,7 +85,9 @@ userForm.addEventListener("submit", async (e) => {
   const email = document.getElementById("Email").value;
   const phone = document.getElementById("Phone").value;
   const location = document.getElementById("Location").value;
-  const cartItems = []; // Initialize an empty array to store cart items
+  const cartItems = document.getElementById(cartItem).value;
+  const total = document.getElementById(total).value;
+   // Initialize an empty array to store cart items
 
   // Get cart items from the #cartItem div
   const cartItemElements = document.getElementById("cartItem").children;
